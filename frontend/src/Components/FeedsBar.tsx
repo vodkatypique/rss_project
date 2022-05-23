@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react"
+import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import FeedDataService from '../services/feed.service'
+import FeedDataService from '../services/feed.services'
+import Login from "./Login";
+import NewUser from "./NewUser";
 
 interface FeedData {
     title: string;
@@ -10,17 +13,32 @@ interface FeedData {
 
 export default function FeedsBar() {
     const [feeds, setFeeds] = useState<FeedData[]>([])
+    const [isFetching, setIsFetching] = useState(false);
 
     function retrieveFeeds() {
-        FeedDataService.getAll()
-          .then((response: any) => {
-            setFeeds(
-              response.data);
-          })
-          .catch((e: Error) => {
-            console.log(e);
-          });
-      };
+      console.log("retrieve")
+      FeedDataService.getAll()
+        .then((response: any) => {
+          setFeeds(
+            response.data);
+        })
+        .catch((e: Error) => {
+          console.log(e);
+        });
+    };
+    
+    useEffect(() => {
+      if (isFetching) {
+        FeedDataService.refetchData().then(() => {
+          setIsFetching(false);
+          retrieveFeeds()
+        });
+      }
+    }, [isFetching]);
+  
+    const handleClick = () => setIsFetching(true);
+
+    
 
     useEffect (() => {
         retrieveFeeds()
@@ -29,6 +47,15 @@ export default function FeedsBar() {
     return (
         <div className="listOfFeeds">
             <h1>Feeds</h1>
+            <Login/>
+            <NewUser/>
+            <Button
+        variant="primary"
+        disabled={isFetching}
+        onClick={!isFetching ? handleClick : undefined}
+      >
+        {isFetching ? 'Loading…' : 'Click to load'}
+      </Button>
             <nav>
                 <ul>
                 <li key="all"><Link to={`/`}>All</Link></li>

@@ -3,7 +3,7 @@ class FeedDataService {
   getAll() {
     return http.get("/feeds");
   }
-  get(slug: string) {
+  get(slug: string ) {
     return http.get(`/feeds/${slug}`);
   }
   //create(data: ITutorialData) {
@@ -17,6 +17,9 @@ class FeedDataService {
   }
   deleteAll() {
     return http.delete(`/feeds`);
+  }
+  refetchData(){
+    return http.get(`/update`);
   }
 }
 export default new FeedDataService();

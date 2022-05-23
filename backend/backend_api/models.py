@@ -1,6 +1,5 @@
 from django.db import models
-from django.conf import settings
-
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Feed(models.Model):
@@ -13,6 +12,7 @@ class Feed(models.Model):
     updated_on = models.DateTimeField(blank=True, null=True)
     slug = models.SlugField(unique=True)
 
+    feeders = models.ManyToManyField(User)
     objects = models.Manager()
 
     class Meta:
@@ -33,6 +33,9 @@ class Item(models.Model):
  
     read = models.BooleanField(default=False)
     mark = models.BooleanField(default=False)
+    
+    readers = models.ManyToManyField(User)
+
    
     objects = models.Manager()
 
@@ -41,3 +44,5 @@ class Item(models.Model):
    
     def __str__(self):
         return self.title
+
+

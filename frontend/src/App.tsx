@@ -1,16 +1,10 @@
 import { useEffect, useState } from 'react';
-import Default from './Components/Default';
-
-interface BilletData {
-  title: string;
-  subtitle: string;
-  body: string;
-}
+import Feed from './Components/Feed';
 
 function App() {
   return (
     <div className="App">
-      <Default/>
+      <Feed/>
     </div>
   );
 }

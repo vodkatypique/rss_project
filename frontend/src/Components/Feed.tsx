@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import FeedsBar from "./FeedsBar";
-import FeedDataService from '../services/feed.service'
+import FeedDataService from '../services/feed.services'
+import ItemDataService from '../services/item.services'
 import { useParams } from "react-router-dom";
 
 
@@ -17,20 +18,26 @@ export default function Feed() {
   const { slug } = useParams();
   const [items, setItems] = useState<ItemData[]>([])
     
-  function retrieveItemsByFeed(feed: string) {
-        FeedDataService.get(feed)
+  function retrieveItems(feed?: string) {
+        feed ? FeedDataService.get(feed)
           .then((response: any) => {
             setItems(
               response.data);
           })
           .catch((e: Error) => {
             console.log(e);
-          });
+          }) : ItemDataService.getAll().then((response: any) => {
+            setItems(
+              response.data);
+          })
+          .catch((e: Error) => {
+            console.log(e);
+          })
       };
 
     useEffect (() => {
-        retrieveItemsByFeed(slug || "")
-  }, [])
+        retrieveItems(slug)
+  }, [slug])
   return (
     <>
       <FeedsBar/>
