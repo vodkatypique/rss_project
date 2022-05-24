@@ -45,19 +45,24 @@ export default function FeedsBar() {
   }, [])
 
     return (
-        <div className="listOfFeeds">
-            <h1>Feeds</h1>
-            <Login/>
-            <NewUser/>
-            <Button
-        variant="primary"
-        disabled={isFetching}
-        onClick={!isFetching ? handleClick : undefined}
-      >
-        {isFetching ? 'Loading…' : 'Click to load'}
-      </Button>
+        <div className="listOfFeeds" style={{
+          margin: 0,
+          padding: 0,
+          width: "10%",
+          height: "100%",
+          position: "fixed", /* Make it stick, even on scroll */
+          overflow: "auto" /* Enable scrolling if the sidenav has too much content */
+        }}>
             <nav>
                 <ul>
+   <h1>Feeds</h1>
+            <Button
+    variant="primary"
+    disabled={isFetching}
+    onClick={!isFetching ? handleClick : undefined}
+    >
+    {isFetching ? 'Fetching...' : 'Click to fetch'}
+    </Button>
                 <li key="all"><Link to={`/`}>All</Link></li>
                 {feeds.map((feed) => {
                     return <li key={feed.slug}><Link to={`/feed/${feed.slug}`}>{feed.title}</Link></li>

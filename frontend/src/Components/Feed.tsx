@@ -40,8 +40,14 @@ export default function Feed() {
   }, [slug])
   return (
     <>
-      <FeedsBar/>
-      <div className="listOfItem">
+
+    
+
+
+
+      <div className="listOfItem" style={{
+  marginLeft: "10%",
+}}>
         
       {items.filter((item) => !item.read).map((item) => {
           return <div className="item" key={item.id}><a href={`/item/${item.slug}`}><p className="title">{item.title}</p></a><p className="read">Read : {String(item.read)}</p><div className="description"></div>

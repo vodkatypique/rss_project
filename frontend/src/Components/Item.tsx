@@ -34,8 +34,9 @@ export default function Feed() {
   }, [])
   return (
     <>
-      <FeedsBar/>
-      <div className="item">
+      <div className="item" style={{
+  marginLeft: "10%",
+}}>
         read article
       </div>
     </>

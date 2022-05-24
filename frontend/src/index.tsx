@@ -6,6 +6,9 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Feed from './Components/Feed';
 import Item from './Components/Item';
+import FeedsBar from './Components/FeedsBar';
+import IdentificationBox from './Components/IdentificationBox';
+import AddFeedBox from './Components/AddFeedBox';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -13,9 +16,9 @@ const root = ReactDOM.createRoot(
 root.render(
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Feed />} />
-        <Route path="/feed/:slug" element={<Feed />} />
-        <Route path="/item/:slug" element={<Item />} />
+        <Route path="/" element={<><IdentificationBox/><AddFeedBox/><FeedsBar/><Feed /></>} />
+        <Route path="/feed/:slug" element={<><IdentificationBox/><AddFeedBox/><FeedsBar/><Feed /></>} />
+        <Route path="/item/:slug" element={<><IdentificationBox/><AddFeedBox/><FeedsBar/><Item /></>} />
       </Routes>
     </BrowserRouter>
 );

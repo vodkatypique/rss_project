@@ -4,5 +4,9 @@ class JwtDataService {
     return http.post("/api/token/", data);
   }
 
+  refresh(tokenRefresh: string) {
+    return http.post("/api/token/refresh/", tokenRefresh);
+  }
+
 }
 export default new JwtDataService();

@@ -4,7 +4,7 @@ import Feed from './Components/Feed';
 function App() {
   return (
     <div className="App">
-      <Feed/>
+      <App/>
     </div>
   );
 }

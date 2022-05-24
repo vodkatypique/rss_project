@@ -6,9 +6,9 @@ class FeedDataService {
   get(slug: string ) {
     return http.get(`/feeds/${slug}`);
   }
-  //create(data: ITutorialData) {
-  //  return http.post<ITutorialData>("/tutorials", data);
-  //}
+  create(data: {title: string, feed_url: string, feeders: number[], slug: string}) {
+    return http.post("/feeds/", data);
+  }
   //update(data: ITutorialData, id: any) {
   //  return http.put<any>(`/tutorials/${id}`, data);
   //}

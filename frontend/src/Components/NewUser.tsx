@@ -34,11 +34,9 @@ export default function NewUser(){
       );
 
       return (
-        <div className="app">
-          <div className="login-form">
+          <div className="register-form">
             <div className="title">New User</div>
-            {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
+            {isSubmitted ? <div>User is successfully register in</div> : renderForm}
           </div>
-        </div>
       );
 }

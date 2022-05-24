@@ -16,8 +16,9 @@ export default function Login(){
     const username = target.username.value; // typechecks!
     const password = target.password.value; // typechecks!
     JwtDataService.create({username, password})
-    .then((response: any) => response.data).then((data) => localStorage.setItem('jwt', JSON.stringify(data)))
-    console.log(localStorage.getItem('jwt'))
+    .then((response: any) => response.data).then((data) => {
+      localStorage.setItem('jwt', JSON.stringify(data));
+      setIsSubmitted(true)})
   }}>
             <div className="input-container">
               <label>Username </label>
@@ -35,11 +36,11 @@ export default function Login(){
       );
 
       return (
-        <div className="app">
+        
           <div className="login-form">
             <div className="title">Sign In</div>
             {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
           </div>
-        </div>
+        
       );
 }
