@@ -13,8 +13,9 @@ interface ItemData {
   read: boolean;
 }
 
-export default function Feed() {
-  const { slug } = useParams();
+export default function Item(props : {slug: string}) {
+  const slug = props.slug;
+
   const [item, setItems] = useState<ItemData>()
     
   function retrieveItemAndRead(slug: string) {
@@ -37,7 +38,7 @@ export default function Feed() {
       <div className="item" style={{
   marginLeft: "10%",
 }}>
-        read article
+        {item?.description}
       </div>
     </>
   )

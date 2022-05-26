@@ -58,7 +58,7 @@ export default function Login(){
       return (
         
           <div className="login-form">
-            <div className="title">Sign In</div>
+            <div className="title">Add Feed</div>
             {isSubmitted ? <div>created</div> : renderForm}
           </div>
         

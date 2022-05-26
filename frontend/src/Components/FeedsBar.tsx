@@ -2,8 +2,6 @@ import { useEffect, useState } from "react"
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import FeedDataService from '../services/feed.services'
-import Login from "./Login";
-import NewUser from "./NewUser";
 
 interface FeedData {
     title: string;
@@ -36,7 +34,7 @@ export default function FeedsBar() {
       }
     }, [isFetching]);
   
-    const handleClick = () => setIsFetching(true);
+    const handleClick = () => setIsFetching(true); //TODO rerender after
 
     
 

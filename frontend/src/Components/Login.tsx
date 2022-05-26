@@ -18,7 +18,7 @@ export default function Login(){
     JwtDataService.create({username, password})
     .then((response: any) => response.data).then((data) => {
       localStorage.setItem('jwt', JSON.stringify(data));
-      setIsSubmitted(true)})
+      setIsSubmitted(true); e.preventDefault()})
   }}>
             <div className="input-container">
               <label>Username </label>

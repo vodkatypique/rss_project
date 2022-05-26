@@ -3,6 +3,8 @@ import FeedsBar from "./FeedsBar";
 import FeedDataService from '../services/feed.services'
 import ItemDataService from '../services/item.services'
 import { useParams } from "react-router-dom";
+import { Button } from "react-bootstrap";
+import ModalArticle from "./ModalArticle";
 
 
 interface ItemData {
@@ -17,6 +19,10 @@ interface ItemData {
 export default function Feed() {
   const { slug } = useParams();
   const [items, setItems] = useState<ItemData[]>([])
+  const [read, setRead] = useState(0)
+  const readOneArticle = () => {
+    setRead(read+1);
+  }
     
   function retrieveItems(feed?: string) {
         feed ? FeedDataService.get(feed)
@@ -36,8 +42,9 @@ export default function Feed() {
       };
 
     useEffect (() => {
-        retrieveItems(slug)
-  }, [slug])
+        retrieveItems(slug);
+        console.log("reload")
+  }, [slug, read])
   return (
     <>
 
@@ -50,7 +57,10 @@ export default function Feed() {
 }}>
         
       {items.filter((item) => !item.read).map((item) => {
-          return <div className="item" key={item.id}><a href={`/item/${item.slug}`}><p className="title">{item.title}</p></a><p className="read">Read : {String(item.read)}</p><div className="description"></div>
+        //<a href={`/item/${item.slug}`}><p className="title">{item.title}</p></a>
+          return <div className="item" key={item.id}>
+            <ModalArticle slug={item.slug} title={item.title} read={readOneArticle}/>
+            <p className="read">Read : {String(item.read)}</p><div className="description"></div>
             </div>
         })}
       </div>

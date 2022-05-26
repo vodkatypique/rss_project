@@ -18,7 +18,6 @@ root.render(
       <Routes>
         <Route path="/" element={<><IdentificationBox/><AddFeedBox/><FeedsBar/><Feed /></>} />
         <Route path="/feed/:slug" element={<><IdentificationBox/><AddFeedBox/><FeedsBar/><Feed /></>} />
-        <Route path="/item/:slug" element={<><IdentificationBox/><AddFeedBox/><FeedsBar/><Item /></>} />
       </Routes>
     </BrowserRouter>
 );
